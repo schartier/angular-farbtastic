@@ -1,0 +1,45 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+        <style>
+            li {
+                border: solid 1px #666666;
+            }
+            .sortable-both {
+                width:100%;
+            }
+        </style>
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+          <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+        <div ng-app="angularFarbtasticDemo">
+            <div ng-contoller="FarbtasticCtrl">
+                <ng-farbtastic ng-model="color">
+                </ng-farbtastic>
+
+                {{color}}
+            </div>
+        </div>
+
+        <div class="footer">
+            <a href="https://github.com/schartier/angular-farbtastic">https://github.com/schartier</a>
+        </div>
+
+
+
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1-rc2/jquery.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.16/angular.min.js"></script>
+        <script src="./app.js"></script>
+        <script src="../angular-farbtastic.js"></script>
+    </body>
+</html>
