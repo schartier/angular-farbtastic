@@ -10,3 +10,7 @@ Usage example
 <ng-farbtastic ng-model="color">
 </ng-farbtastic>
 ```
+
+Preview:
+
+http://sebastien.chartier.pro/angular-farbtastic/example/
