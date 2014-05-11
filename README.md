@@ -7,7 +7,7 @@ Installation
 ------------
 
 ```
-bower install angular-farbtastice --save
+bower install angular-farbtastic --save
 ```
 
 Usage example
