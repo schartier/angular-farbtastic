@@ -5,7 +5,7 @@ Angular.js directive implementation of the farbtastic jquery plugin.
 
 Preview:
 
-http://sebastien.chartier.pro/angular-farbtastic/example/
+http://sebastien.chartier.pro/angular-farbtastic
 
 ![Farbtastic screenshot](http://sebastien.chartier.pro/angular-farbtastic/farbtastic.jpg "Screenshot")
 
