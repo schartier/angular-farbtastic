@@ -22,3 +22,8 @@ Usage example
 </ng-farbtastic>
 ```
 
+Farbtastic was originally written by Steven Wittens and is licensed under the GPL.
+http://acko.net/blog/farbtastic-jquery-color-picker-plug-in/
+
+Thanks to Matt Farina for it's implementation... that was used as base for this
+project: https://github.com/mattfarina/farbtastic
