@@ -458,7 +458,7 @@
                             link: function($scope, $element, $attrs, ngModel) {
                                 var farbtastic;
 
-                                function createFarbtastic() {
+                                ngModel.$render = function(){
                                     if (!farbtastic) {
                                         farbtastic = new Farbtastic($element, function(color) {
                                             safeApply($scope, function() {
@@ -468,11 +468,10 @@
                                             color: ngModel.$viewValue
                                         });
                                     }
-                                    createFarbtastic = $.noop;
+                                    else{
+                                        farbtastic.setColor(ngModel.$viewValue);
+                                    }
                                 }
-
-                                // Todo: remove this watch if possible
-                                $scope.$watch('ngModel.$viewValue', createFarbtastic);
                             }
                         };
                     });
