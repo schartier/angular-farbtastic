@@ -465,7 +465,8 @@
                                                 ngModel.$setViewValue(color);
                                             });
                                         }, {
-                                            color: ngModel.$viewValue
+                                            color: ngModel.$viewValue,
+                                            width: $attrs['width']?parseInt($attrs['width']):300
                                         });
                                     }
                                     else{
