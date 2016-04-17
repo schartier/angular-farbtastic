@@ -12,16 +12,16 @@
 
         this.options = $.extend({
             width: 300,
+            wheelWidth: (options.width || 300) / 10,
             color: '#808080'
         }, options);
 
-        this.options.wheelWidth = this.options.width / 10;
-
-        this.callback = callback;
-
         this.$container = $container;
-
+        // Initialize.
         this.initWidget();
+
+        // Set linked elements/callback
+        this.callback = callback;
 
         this.setColor(this.options.color);
 
@@ -39,6 +39,13 @@
 
         // Install mousedown handler (the others are set on the document on-demand)
         $('canvas.farbtastic-overlay', $container).bind('mousedown', this.mousedown);
+    };
+
+    Farbtastic.prototype.updateValue = function() {
+        if (this.value && this.value !== this.color) {
+            this.setColor(this.value);
+        }
+        return this;
     };
 
     /**
@@ -81,9 +88,9 @@
         this.$container
                 .html(
                         '<div class="farbtastic" style="position: relative">' +
-                        '  <div class="farbtastic-solid"></div>' +
-                        '  <canvas class="farbtastic-mask"></canvas>' +
-                        '  <canvas class="farbtastic-overlay"></canvas>' +
+                        '<div class="farbtastic-solid"></div>' +
+                        '<canvas class="farbtastic-mask"></canvas>' +
+                        '<canvas class="farbtastic-overlay"></canvas>' +
                         '</div>'
                         )
                 .find('*').attr(dim).css(dim).end()
@@ -120,6 +127,7 @@
      * Draw the color wheel.
      */
     Farbtastic.prototype.drawCircle = function() {
+        var tm = +(new Date());
         // Draw a hue circle with a bunch of gradient-stroked beziers.
         // Have to use beziers, as gradient-stroked arcs don't work.
         var n = 24,
@@ -136,8 +144,8 @@
             var d2 = i / n,
                     angle2 = d2 * Math.PI * 2,
                     // Endpoints
-                    x1 = Math.sin(angle1), y1 = -Math.cos(angle1),
-                    x2 = Math.sin(angle2), y2 = -Math.cos(angle2),
+                    x1 = Math.sin(angle1), y1 = -Math.cos(angle1);
+            x2 = Math.sin(angle2), y2 = -Math.cos(angle2),
                     // Midpoint chosen so that the endpoints are tangent to the circle.
                     am = (angle1 + angle2) / 2,
                     tan = 1 / Math.cos((angle2 - angle1) / 2),
@@ -447,20 +455,27 @@
                         return {
                             restrict: 'E',
                             require: '^ngModel',
+                            scope: {
+                                'width': '@?'
+                            },
                             link: function($scope, $element, $attrs, ngModel) {
-                                // todo: remove the following $watch
-                                var modelWatcher = $scope.$watch('ngModel.$viewValue', function() {
-                                    new Farbtastic($element, function(color) {
-                                        safeApply($scope, function() {
-                                            ngModel.$setViewValue(color);
-                                        });
-                                    }, {
-                                        color: ngModel.$viewValue
-                                    });
+                                var farbtastic;
 
-                                    // Unregister this $watch
-                                    modelWatcher();
-                                });
+                                ngModel.$render = function(){
+                                    if (!farbtastic) {
+                                        farbtastic = new Farbtastic($element, function(color) {
+                                            safeApply($scope, function() {
+                                                ngModel.$setViewValue(color);
+                                            });
+                                        }, {
+                                            color: ngModel.$viewValue,
+                                            width: $scope.width
+                                        });
+                                    }
+                                    else{
+                                        farbtastic.setColor(ngModel.$viewValue);
+                                    }
+                                };
                             }
                         };
                     });

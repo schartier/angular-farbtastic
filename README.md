@@ -24,6 +24,13 @@ Usage example
 </ng-farbtastic>
 ```
 
+Usage example with custom width
+-------------
+```
+<ng-farbtastic ng-model="color" width="200">
+</ng-farbtastic>
+```
+
 Farbtastic was originally written by Steven Wittens and is licensed under the GPL.
 http://acko.net/blog/farbtastic-jquery-color-picker-plug-in/
 
