@@ -455,6 +455,9 @@
                         return {
                             restrict: 'E',
                             require: '^ngModel',
+                            scope: {
+                                'width': '@?'
+                            },
                             link: function($scope, $element, $attrs, ngModel) {
                                 var farbtastic;
 
@@ -465,13 +468,14 @@
                                                 ngModel.$setViewValue(color);
                                             });
                                         }, {
-                                            color: ngModel.$viewValue
+                                            color: ngModel.$viewValue,
+                                            width: $scope.width
                                         });
                                     }
                                     else{
                                         farbtastic.setColor(ngModel.$viewValue);
                                     }
-                                }
+                                };
                             }
                         };
                     });
