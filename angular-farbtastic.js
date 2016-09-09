@@ -1,4 +1,4 @@
-'use scrict';
+'use strict';
 
 /*
  * Based on farbtastic 2.0.0-alpha.1
@@ -144,8 +144,8 @@
             var d2 = i / n,
                     angle2 = d2 * Math.PI * 2,
                     // Endpoints
-                    x1 = Math.sin(angle1), y1 = -Math.cos(angle1);
-            x2 = Math.sin(angle2), y2 = -Math.cos(angle2),
+                    x1 = Math.sin(angle1), y1 = -Math.cos(angle1),
+                    x2 = Math.sin(angle2), y2 = -Math.cos(angle2),
                     // Midpoint chosen so that the endpoints are tangent to the circle.
                     am = (angle1 + angle2) / 2,
                     tan = 1 / Math.cos((angle2 - angle1) / 2),
